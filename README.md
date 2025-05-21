@@ -2,6 +2,8 @@
 
 An automated mouse clicking utility that lets you record multiple click positions and then automatically clicks them in sequence, perfect for automating repetitive tasks.
 
+[Screencast from 2025-05-20 21-47-35.webm](https://github.com/user-attachments/assets/e5f2eb6c-eed8-4bdf-9c08-76b352c52197)
+
 ## Description
 
 Click N Repeat is a Python application that automates repetitive mouse clicking tasks. It allows users to:
