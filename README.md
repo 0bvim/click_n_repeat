@@ -1,6 +1,6 @@
 # Click N Repeat
 
-An automated mouse clicking utility that lets you record multiple click positions and then automatically clicks them in sequence.
+An automated mouse clicking utility that lets you record multiple click positions and then automatically clicks them in sequence, perfect for automating repetitive tasks.
 
 ## Description
 
@@ -19,8 +19,8 @@ This tool is particularly useful for tasks requiring repetitive clicking in the 
 ## Requirements
 
 - Python 3.6+
-- PyAutoGUI
-- pynput
+- PyAutoGUI (for automated mouse control)
+- pynput (for capturing mouse input)
 
 ## Installation
 
@@ -45,6 +45,11 @@ pip install pyautogui==0.9.54 pynput==1.8.1
 python3 script.py
 ```
 
+On Windows, you may use:
+```
+python script.py
+```
+
 2. The program will ask you to record click positions:
    - You'll be prompted to click on the screen to record each position
    - By default, the program records 3 click positions
@@ -52,20 +57,34 @@ python3 script.py
 
 3. Enter the number of repetitions:
    - Enter a number for a finite number of repetitions
-   - Enter 'None' for an infinite loop
+   - Enter 'inf' or 'infinite' for an infinite loop
+   - The program will validate your input to ensure it's a positive number or infinity
 
 4. Enter the delay between clicks in seconds:
    - 0.5 is very fast
    - 0.8-1.0 is average speed
    - Press Enter to use the default value (0.8 seconds)
+   - The program will validate that the delay is greater than zero
 
 5. After a 3-second countdown, the program will start clicking at the recorded positions in sequence
+   - The console will display which loop iteration is currently executing
+   - For infinite loops, it will show the current iteration number
 
-## Safety Feature
+## Safety Features
 
-The program includes a fail-safe mechanism:
-- To stop the automation at any point, move your mouse cursor to the top-left corner of the screen (position 0, 0)
-- This will immediately terminate the program
+The program includes multiple safety mechanisms:
+
+1. **Fail-safe mechanism**:
+   - To stop the automation at any point, move your mouse cursor to the top-left corner of the screen (position 0, 0)
+   - This will immediately terminate the program
+
+2. **Keyboard interrupt**:
+   - Press Ctrl+C in the terminal/command prompt to stop the program
+   - Works during both position recording and clicking phases
+
+3. **Error handling**:
+   - The program validates all user inputs to prevent crashes
+   - If position recording is interrupted, you can proceed with the positions already recorded
 
 ## Customization
 
@@ -74,12 +93,35 @@ You can modify the default settings by changing these constants at the beginning
 - `DEFAULT_REPETITIONS`: Default number of repetition cycles
 - `DEFAULT_CLICK_POSITIONS`: Default number of click positions to record
 
+Advanced users can modify the script to add features like:
+- Custom key combinations for stopping the automation
+- Variable delays between different click positions
+- Saving and loading click patterns from files
+- Adding keyboard input automation alongside mouse clicks
+
 ## Limitations
 
 - The program is designed for basic repetitive clicking tasks
 - For complex automation scenarios, consider more advanced solutions
 - Performance may vary depending on your system specifications
+- The automation works best on stable UIs that don't change position between executions
+- Some applications or games may have anti-bot measures that detect automated clicking
 
 ## License
 
 This project is open source and available under the MIT License.
+
+## Troubleshooting
+
+**Q: The clicks aren't happening at the right positions**
+- Make sure your screen resolution hasn't changed since recording positions
+- Ensure the target window is in the same position as during recording
+- Try using a longer delay to ensure the application has time to respond
+
+**Q: The program crashes when I enter repetitions**
+- Make sure you're entering a valid number or 'inf'
+- Check that you have the required Python packages installed
+
+**Q: How can I stop an infinite loop?**
+- Move your mouse to the top-left corner of the screen (0,0) coordinates
+- Alternatively, press Ctrl+C in the terminal window running the script
